@@ -171,7 +171,9 @@ const WorkerUpdate = ({workerId}) => {
     if (!confirm) return;
   
     try {
-      await axios.put(`${API_URL}/admin_v2/workers/${id}/fire`);
+      await axios.put(`${API_URL}/admin_v2/workers/${id}/fire`, null, {
+        withCredentials: true,
+      });
       alert('Trabajador despedido');
       // Opcional: actualizar estado o recargar lista
       

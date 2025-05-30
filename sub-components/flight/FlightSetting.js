@@ -166,7 +166,8 @@ const FlightSetting = () => {
 
     try {
       const response = await fetch(`${API_URL}/admin_v2/flight`, {
-        method: 'POST',
+        method: 'POST',credentials: 'include',
+
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(flightData)
       });
