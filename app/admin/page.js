@@ -3,12 +3,12 @@
 import { Fragment } from "react";
 import Link from 'next/link';
 import { Container, Col, Row ,Spinner,Card, Dropdown} from 'react-bootstrap';
-
+import { MoreVertical } from 'react-feather';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 // import widget/custom components
 import { HighlightCode }  from 'widgets';
-
+import dynamic from 'next/dynamic';
 // import react code data file
 import {
 	BorderSpinnerCode,
@@ -37,7 +37,7 @@ import { ActiveProjects, Teams,
 // import required data files
 import ProjectsStatsData from "data/dashboard/ProjectsStatsData";
 import { useUser } from 'context/userContext'; 
-
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 const Home = () => {
     
