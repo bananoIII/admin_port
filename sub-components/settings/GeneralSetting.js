@@ -38,7 +38,7 @@ const GeneralSetting = () => {
         // Guardar el usuario en estado si lo necesitas en el componente
         setUsuario(data.usuario);
       } catch (err) {
-        router.push('/authentication/sign-in');
+        
       }
     };
 
@@ -133,7 +133,7 @@ const GeneralSetting = () => {
                     <Form.Control
                       type="text"
                       id="birthDate"
-                      value={(usuario?.birthDate)}
+                      value={(usuario?.birthDate) || ''}
                       readOnly
                     />
                   </Col>

@@ -117,7 +117,9 @@ const FlightsList = () => {
   
     useEffect(() => {
       // Reemplaza esta URL con tu API real
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flights/ongoing`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flights/ongoing`, {
+        credentials: 'include',
+      })
         .then(res => res.json())
         .then(data => setFlights(data))
         .catch(err => console.error('Error cargando vuelos:', err));

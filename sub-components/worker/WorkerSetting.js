@@ -83,7 +83,8 @@ const WorkerSetting = () => {
 
     try {
       const res = await fetch(`${API_URL}/admin_v2/worker`, {
-        method: "POST",
+        method: "POST",credentials: 'include',
+
         headers: {
           "Content-Type": "application/json",
         },

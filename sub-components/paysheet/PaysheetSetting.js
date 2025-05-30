@@ -18,7 +18,9 @@ const PaysheetSetting = () => {
 
   useEffect(() => {
     const fetchWorkers = async () => {
-      const res = await fetch(`${API_URL}/admin_v2/workers/basic-info`);
+      const res = await fetch(`${API_URL}/admin_v2/workers/basic-info`, {
+        credentials: 'include',
+      });
       const data = await res.json();
       const enriched = data.map(worker => ({
         ...worker,
@@ -59,7 +61,8 @@ const PaysheetSetting = () => {
 
     try {
       const res = await fetch(`${API_URL}/admin_v2/payroll`, {
-        method: "POST",
+        method: "POST",credentials: 'include',
+
         headers: {
           "Content-Type": "application/json",
         },

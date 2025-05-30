@@ -14,7 +14,8 @@ const Charts = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flightssss/status-summary`);
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flightssss/status-summary`,{
+            credentials: 'include'});
           const result = await res.json();
   
           const counts = { completado: 0, retrasado: 0, cancelado: 0 };
@@ -112,7 +113,6 @@ const Charts = () => {
             <div>
               <h4 className="mb-0">Desempeño de vuelos</h4>
             </div>
-            <ActionMenu />
           </div>
   
           <div className="mb-8">

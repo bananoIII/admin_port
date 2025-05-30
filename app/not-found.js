@@ -19,11 +19,11 @@ const NotFound = () => {
                 <div className="mb-3">
                   <Image src="/images/error/404-error-img.png" alt="" className="img-fluid" />
                 </div>
-                <h1 className="display-4 fw-bold">Oops! the page not found.</h1>
-                <p className="mb-4">Or simply leverage the expertise of our consultation
-                  team.</p>
+                
+                <h1 className="display-4 fw-bold">Ups! No hay página.</h1>
+                <p className="mb-4">Regresa con el botón de abajo</p>
                 <Link href="/" className="btn btn-primary">
-                  Go Home
+                  Ve a home
                 </Link>
               </div>
             </Col>

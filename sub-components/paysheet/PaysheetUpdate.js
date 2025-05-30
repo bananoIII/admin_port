@@ -28,7 +28,9 @@ const PaysheetUpdate = ({payrollId}) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${API_URL}/admin_v2/payroll/${id}`);
+      const response = await fetch(`${API_URL}/admin_v2/payroll/${id}`, {
+        credentials: 'include',
+      });
       const data = await response.json();
 
       if (data.period) setPeriod(data.period);

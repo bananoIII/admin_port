@@ -80,7 +80,9 @@ const Home = () => {
 
 
     useEffect(() => {
-          fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flightss/report`)
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flightss/report`, {
+            credentials: 'include',
+          })
             .then(res => res.json())
             .then(data => setgeneral(data))
             .catch(err => console.error('Error cargando nóminas:', err));
@@ -123,7 +125,9 @@ const FlightsList = () => {
   
     useEffect(() => {
       // Reemplaza esta URL con tu API real
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flights`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/flights`, {
+        credentials: 'include',
+      })
         .then(res => res.json())
         .then(data => setFlights(data))
         .catch(err => console.error('Error cargando vuelos:', err));

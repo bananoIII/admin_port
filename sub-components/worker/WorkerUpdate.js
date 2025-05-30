@@ -90,7 +90,8 @@ const WorkerUpdate = ({workerId}) => {
   
     try {
       const res = await fetch(`${API_URL}/admin_v2/worker/${workerId}`, {
-        method: "PUT",
+        method: "PUT",credentials: 'include',
+
         headers: {
           "Content-Type": "application/json",
         },
@@ -115,7 +116,9 @@ const WorkerUpdate = ({workerId}) => {
 
     const fetchWorker = async () => {
       try {
-        const response = await fetch(`${API_URL}/admin_v2/worker/full/${workerId}`);
+        const response = await fetch(`${API_URL}/admin_v2/worker/full/${workerId}`, {
+          credentials: 'include',
+        });
         const data = await response.json();
   
 

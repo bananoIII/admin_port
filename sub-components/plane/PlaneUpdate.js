@@ -42,7 +42,8 @@ const [modelo, setModelo] = useState("");
   
     try {
       const response = await fetch(`${API_URL}/admin_v2/plane/${id}`, {
-        method: 'PUT',
+        method: 'PUT',credentials: 'include',
+
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(planeData)
       });
@@ -63,7 +64,9 @@ const [modelo, setModelo] = useState("");
 useEffect(() => {
   if (!id) return;
   const fetchPlane = async () => {
-    const response = await fetch(`${API_URL}/admin_v2/plane/${id}`);
+    const response = await fetch(`${API_URL}/admin_v2/plane/${id}`, {
+      credentials: 'include',
+    });
     const data = await response.json();
     
  

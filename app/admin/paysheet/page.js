@@ -51,7 +51,9 @@ const Home = () => {
     const [general, setgeneral] = useState([]);
 
     useEffect(() => {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/payrolls/resumen-general`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/payrolls/resumen-general`, {
+        credentials: 'include',
+      })
         .then(res => res.json())
         .then(data => setgeneral(data))
         .catch(err => console.error('Error cargando nóminas:', err));
@@ -174,7 +176,9 @@ const PayrollList = () => {
 
   const router = useRouter()
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/payrolls/resumen-general`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/payrolls/resumen-general`, {
+      credentials: 'include',
+    })
       .then(res => res.json())
       .then(data => setpayrolls(data))
       .catch(err => console.error('Error cargando nóminas:', err));

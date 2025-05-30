@@ -79,7 +79,9 @@ const Home = () => {
     }, [router]);
 
     useEffect(() => {
-      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/planes/report-planes`)
+      fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/planes/report-planes`, {
+        credentials: 'include',
+      })
         .then(res => res.json())
         .then(data => setgeneral(data))
         .catch(err => console.error('Error cargando nóminas:', err));
@@ -153,7 +155,9 @@ const PlanesList = () => {
 
   const router = useRouter()
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/get_planes`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/get_planes`, {
+      credentials: 'include',
+    })
       .then(res => res.json())
       .then(data => setPlanes(data))
       .catch(err => console.error('Error cargando aviones:', err));

@@ -156,7 +156,9 @@ const GooglePieChart = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/workers/report-by-area`);
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/workers/report-by-area`, {
+            credentials: 'include',
+          });
           const json = await res.json();
           setAreas(json.trabajadores_por_area || []);
         } catch (error) {
@@ -213,7 +215,9 @@ const GooglePieChart = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/workers/edad-salario`);
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/workers/edad-salario`, {
+            credentials: 'include',
+          });
           const json = await res.json();
           setDatos(json || []);
         } catch (error) {
@@ -277,7 +281,9 @@ const GooglePieChart = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/payrolls/summary-last-year`);
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/payrolls/summary-last-year`, {
+            credentials: 'include',
+          });
           if (!res.ok) throw new Error('Network response was not ok');
           const json = await res.json();
           setDatos(json || []);
@@ -337,7 +343,9 @@ const GooglePieChart = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/planes/status-summary`);
+          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/planes/status-summary`, {
+            credentials: 'include',
+          });
           const result = await res.json();
   
           const counts = { completado: 0, retrasado: 0, cancelado: 0 };
@@ -493,7 +501,7 @@ const GooglePieChart = () => {
       const fetchData = async () => {
         try {
           const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/payments/monthly-summary`, {
-            method: 'POST',
+            method: 'POST',credentials: 'include',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ type: 'year', year: 2025 }),
           });

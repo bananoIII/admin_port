@@ -45,6 +45,34 @@ const SignIn = () => {
     }
   };
 
+  useEffect(() => {
+          const verificarSesion = async () => {
+            try {
+              const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin_v2/get_session`, {
+                credentials: 'include',
+              });
+      
+              if (res.status === 401) {
+                router.push('/authentication/sign-in');
+                return;
+              }
+      
+              const data = await res.json();
+              if (!data.usuario) {
+                router.push('/authentication/sign-in');
+                return;
+              }
+              router.push('/admin');
+              // Guardar el usuario en estado si lo necesitas en el componente
+              setUsuario(data.usuario);
+            } catch (err) {
+              
+            }
+          };
+      
+          verificarSesion();
+      }, [router]);
+
   
 
   const hasMounted = useMounted();
@@ -56,7 +84,7 @@ const SignIn = () => {
           {/* Card body */}
           <Card.Body className="p-6">
             <div className="mb-4">
-              <Image src="/images/brand/logo/logo-primary.svg" className="mb-2" alt="" />
+              <h1>PORT</h1>
               <p className="mb-6">Pro favor, ingresa tu información.  </p>
               <p style={{ color: 'red' }}>{errorMessage}</p>
             </div>

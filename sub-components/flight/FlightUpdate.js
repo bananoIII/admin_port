@@ -39,7 +39,9 @@ const [destinationState, setDestinationState] = useState('');
 
 useEffect(() => {
   const fetchPlanes = async () => {
-    const response = await fetch(`${API_URL}/admin_v2/api/planes`);
+    const response = await fetch(`${API_URL}/admin_v2/api/planes`, {
+      credentials: 'include',
+    });
     const data = await response.json();
     const formatted = data.map(p => ({ label: p.modelo + ' ' + p.numero_serie, value: p._id }));
     setPlaneOptions(formatted);
@@ -49,7 +51,9 @@ useEffect(() => {
 
 useEffect(() => {
   const fetchWorkers = async () => {
-    const response = await fetch(`${API_URL}/admin_v2/flight/workers`);
+    const response = await fetch(`${API_URL}/admin_v2/flight/workers`, {
+      credentials: 'include',
+    });
     const data = await response.json();
 
     const pilots = data.filter(w => w.tipo === 'pilot').map(w => ({ label: w.nombre, value: w._id }));
@@ -63,7 +67,9 @@ useEffect(() => {
 
 useEffect(() => {
   const fetchCountries = async () => {
-    const response = await fetch(`${API_URL}/api/countries`);
+    const response = await fetch(`${API_URL}/api/countries`, {
+      credentials: 'include',
+    });
     const data = await response.json();
     const formatted = data.map(c => ({ label: c.name, value: c.iso2 }));
     setCountryOptions(formatted);
@@ -76,7 +82,9 @@ const handleOriginCountryChange = async (e) => {
   setOriginIso2(iso2);
   if (iso2 && destinationIso2) fetchDistance(iso2, destinationIso2);
 
-  const res = await fetch(`${API_URL}/api/get/states/${iso2}`);
+  const res = await fetch(`${API_URL}/api/get/states/${iso2}`, {
+    credentials: 'include',
+  });
   const data = await res.json();
   const formatted = data.map(s => ({ label: s.name, value: s.name })) || [];
   setOriginStates(formatted);
@@ -87,7 +95,9 @@ const handleDestinationCountryChange = async (e) => {
   setDestinationIso2(iso2);
   if (originIso2 && iso2) fetchDistance(originIso2, iso2);
 
-  const res = await fetch(`${API_URL}/api/get/states/${iso2}`);
+  const res = await fetch(`${API_URL}/api/get/states/${iso2}`, {
+    credentials: 'include',
+  });
   const data = await res.json();
   const formatted = data.map(s => ({ label: s.name, value: s.name })) || [];
   setDestinationStates(formatted);
@@ -96,7 +106,8 @@ const handleDestinationCountryChange = async (e) => {
 const fetchDistance = async (originIso2, destinationIso2) => {
   try {
     const response = await fetch(`${API_URL}/admin_v2/flight/price_time`, {
-      method: 'POST',
+      method: 'POST',credentials: 'include',
+
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ originIso2, destinationIso2 })
     });
@@ -150,7 +161,8 @@ const handleSubmit = async (e) => {
 
   try {
     const response = await fetch(`${API_URL}/admin_v2/flight/${id}`, {
-      method: 'PUT',
+      method: 'PUT',credentials: 'include',
+
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(flightData)
     });
@@ -171,7 +183,9 @@ const handleSubmit = async (e) => {
 useEffect(() => {
   if (!id) return;
   const fetchFlight = async () => {
-    const response = await fetch(`${API_URL}/admin_v2/flights/${id}`);
+    const response = await fetch(`${API_URL}/admin_v2/flights/${id}`, {
+      credentials: 'include',
+    });
     const data = await response.json();
     
     setPricePerKm(data.price_per_km);
